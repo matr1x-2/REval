@@ -1,0 +1,129 @@
+========== 评估任务: DREval/0 ==========
+【完整原始代码 (Code)】:
+from typing import List
+
+
+def has_close_elements(numbers: List[float], threshold: float) -> bool:
+    """ Check if in given list of numbers, are any two numbers closer to each other than
+    given threshold.
+    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)
+    False
+    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)
+    True
+    """
+    for idx, elem in enumerate(numbers):
+        for idx2, elem2 in enumerate(numbers):
+            if idx != idx2:
+                distance = abs(elem - elem2)
+                if distance < threshold:
+                    return True
+
+    return False
+
+【测试输入与预期输出 (I/O)】:
+  测试用例 0: 输入 ([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3,)  ->  预期输出 True
+  测试用例 1: 输入 ([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.05,)  ->  预期输出 False
+  测试用例 2: 输入 ([1.0, 2.0, 5.9, 4.0, 5.0], 0.95,)  ->  预期输出 True
+  测试用例 3: 输入 ([1.0, 2.0, 5.9, 4.0, 5.0], 0.8,)  ->  预期输出 False
+  测试用例 4: 输入 ([1.0, 2.0, 3.0, 4.0, 5.0, 2.0], 0.1,)  ->  预期输出 True
+  测试用例 5: 输入 ([1.1, 2.2, 3.1, 4.1, 5.1], 1.0,)  ->  预期输出 True
+  测试用例 6: 输入 ([1.1, 2.2, 3.1, 4.1, 5.1], 0.5,)  ->  预期输出 False
+
+【AI 代码理解追踪任务 (Tracing Tasks)】:
+  -> 触发指令: assert has_close_elements([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == ??
+  -> 要求 AI 推演的状态 (基于测试用例 0):
+       当运行到第 17 行时，变量 'distance' 的值是什么？
+       当运行到第 15 行时，变量 'distance' 的值是什么？
+  ----------------------------------------
+  -> 触发指令: assert has_close_elements([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.05) == ??
+  -> 要求 AI 推演的状态 (基于测试用例 1):
+       当运行到第 17 行时，变量 'distance' 的值是什么？
+       当运行到第 15 行时，变量 'distance' 的值是什么？
+  ----------------------------------------
+  -> 触发指令: assert has_close_elements([1.0, 2.0, 5.9, 4.0, 5.0], 0.95) == ??
+  -> 要求 AI 推演的状态 (基于测试用例 2):
+       当运行到第 17 行时，变量 'distance' 的值是什么？
+       当运行到第 15 行时，变量 'distance' 的值是什么？
+  ----------------------------------------
+  -> 触发指令: assert has_close_elements([1.0, 2.0, 5.9, 4.0, 5.0], 0.8) == ??
+  -> 要求 AI 推演的状态 (基于测试用例 3):
+       当运行到第 17 行时，变量 'distance' 的值是什么？
+       当运行到第 15 行时，变量 'distance' 的值是什么？
+  ----------------------------------------
+  -> 触发指令: assert has_close_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0], 0.1) == ??
+  -> 要求 AI 推演的状态 (基于测试用例 4):
+       当运行到第 17 行时，变量 'distance' 的值是什么？
+       当运行到第 15 行时，变量 'distance' 的值是什么？
+  ----------------------------------------
+
+============================================================
+
+========== 评估任务: DREval/1 ==========
+【完整原始代码 (Code)】:
+from typing import List
+
+
+def separate_paren_groups(paren_string: str) -> List[str]:
+    """ Input to this function is a string containing multiple groups of nested parentheses. Your goal is to
+    separate those group into separate strings and return the list of those.
+    Separate groups are balanced (each open brace is properly closed) and not nested within each other
+    Ignore any spaces in the input string.
+    >>> separate_paren_groups('( ) (( )) (( )( ))')
+    ['()', '(())', '(()())']
+    """
+    result = []
+    current_string = []
+    current_depth = 0
+
+    for c in paren_string:
+        if c == '(':
+            current_depth += 1
+            current_string.append(c)
+        elif c == ')':
+            current_depth -= 1
+            current_string.append(c)
+
+            if current_depth == 0:
+                result.append(''.join(current_string))
+                current_string.clear()
+
+    return result
+
+【测试输入与预期输出 (I/O)】:
+  测试用例 0: 输入 ('(()()) ((())) () ((())()())',)  ->  预期输出 ['(()())', '((()))', '()', '((())()())']
+  测试用例 1: 输入 ('() (()) ((())) (((())))',)  ->  预期输出 ['()', '(())', '((()))', '(((())))']
+  测试用例 2: 输入 ('(()(())((())))',)  ->  预期输出 ['(()(())((())))']
+  测试用例 3: 输入 ('( ) (( )) (( )( ))',)  ->  预期输出 ['()', '(())', '(()())']
+
+【AI 代码理解追踪任务 (Tracing Tasks)】:
+  -> 触发指令: assert separate_paren_groups('(()()) ((())) () ((())()())') == ??
+  -> 要求 AI 推演的状态 (基于测试用例 0):
+       当运行到第 26 行时，变量 'current_string' 的值是什么？
+       当运行到第 19 行时，变量 'current_string' 的值是什么？
+       当运行到第 28 行时，变量 'result' 的值是什么？
+       当运行到第 22 行时，变量 'current_string' 的值是什么？
+  ----------------------------------------
+  -> 触发指令: assert separate_paren_groups('() (()) ((())) (((())))') == ??
+  -> 要求 AI 推演的状态 (基于测试用例 1):
+       当运行到第 26 行时，变量 'current_string' 的值是什么？
+       当运行到第 19 行时，变量 'current_string' 的值是什么？
+       当运行到第 28 行时，变量 'result' 的值是什么？
+       当运行到第 22 行时，变量 'current_string' 的值是什么？
+  ----------------------------------------
+  -> 触发指令: assert separate_paren_groups('(()(())((())))') == ??
+  -> 要求 AI 推演的状态 (基于测试用例 2):
+       当运行到第 26 行时，变量 'current_string' 的值是什么？
+       当运行到第 19 行时，变量 'current_string' 的值是什么？
+       当运行到第 28 行时，变量 'result' 的值是什么？
+       当运行到第 22 行时，变量 'current_string' 的值是什么？
+  ----------------------------------------
+  -> 触发指令: assert separate_paren_groups('( ) (( )) (( )( ))') == ??
+  -> 要求 AI 推演的状态 (基于测试用例 3):
+       当运行到第 26 行时，变量 'current_string' 的值是什么？
+       当运行到第 19 行时，变量 'current_string' 的值是什么？
+       当运行到第 28 行时，变量 'result' 的值是什么？
+       当运行到第 22 行时，变量 'current_string' 的值是什么？
+  ----------------------------------------
+
+============================================================
+
