@@ -15,5 +15,6 @@ nltk~=3.7
 # relax the constraint of numpy to avoid conflict with other packages
 numpy
 lxml==5.1.0
+lizard==1.21.2
 # C evaluation pipeline dependencies
 python-dotenv==1.0.1

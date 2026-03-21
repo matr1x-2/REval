@@ -1,0 +1,10 @@
+1_High_Complexity unique_subsystems= 2
+ top= [('net', 25), ('fs', 25)]
+2_Goto_Paths unique_subsystems= 1
+ top= [('fs', 50)]
+3_Kernel_Macros unique_subsystems= 1
+ top= [('fs', 30)]
+4_Multi_Pointers unique_subsystems= 1
+ top= [('fs', 40)]
+5_Concurrency_Locks unique_subsystems= 1
+ top= [('fs', 30)]

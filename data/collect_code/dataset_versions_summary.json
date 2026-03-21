@@ -1,0 +1,49 @@
+[
+  {
+    "dir": "C-REval_Dataset",
+    "has_metadata": false
+  },
+  {
+    "dir": "C-REval_Dataset_multirepo_smoke",
+    "has_metadata": true,
+    "script_version": "3.0.0",
+    "total_samples": 79,
+    "repos": [
+      "linux"
+    ],
+    "source_roots": [
+      {
+        "repo": "linux",
+        "path": "/home/wuwanying/linux/fs"
+      },
+      {
+        "repo": "musl",
+        "path": "/home/wuwanying/linux/tools/include"
+      }
+    ]
+  },
+  {
+    "dir": "C-REval_Dataset_v2",
+    "has_metadata": true,
+    "script_version": "2.0.0",
+    "total_samples": 200,
+    "repos": null,
+    "source_roots": "/home/wuwanying/linux"
+  },
+  {
+    "dir": "C-REval_Dataset_v2_quick",
+    "has_metadata": true,
+    "script_version": "2.0.0",
+    "total_samples": 167,
+    "repos": null,
+    "source_roots": "/home/wuwanying/linux/fs"
+  },
+  {
+    "dir": "C-REval_Dataset_v3_smoke",
+    "has_metadata": true,
+    "script_version": "2.0.0",
+    "total_samples": 83,
+    "repos": null,
+    "source_roots": "/home/wuwanying/linux/fs"
+  }
+]
