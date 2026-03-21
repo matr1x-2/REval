@@ -1,0 +1,8 @@
+You are given C source code and a harness.
+Reason in [THOUGHT]...[/THOUGHT], then output the exact stdout only in [ANSWER]...[/ANSWER].
+
+[C]
+{code}
+{invocation}
+[/C]
+[THOUGHT]

@@ -1,0 +1,10 @@
+You are given C source code and a harness. Predict the final stdout produced by the program.
+- Output only stdout text content.
+- Keep exact formatting and newlines.
+Return only the final stdout inside [ANSWER] and [/ANSWER].
+
+[C]
+{code}
+{invocation}
+[/C]
+[ANSWER]

@@ -1,0 +1,14 @@
+You are given C source code and a harness program. Answer with the runtime value of the expression.
+- If Line {line} is not executed, answer Nil.
+- If expression {var} is unavailable at Line {line}, answer Nil.
+- Otherwise output exactly one value literal as plain text.
+Return only your final answer in [ANSWER] and [/ANSWER].
+
+[C]
+{code}
+{invocation}
+[/C]
+[QUESTION]
+When running the harness, what is the value of expression {var} at Line {line} ({codeline})?
+[/QUESTION]
+[ANSWER]

@@ -1,0 +1,12 @@
+You are given C source code and a harness program.
+Reason in [THOUGHT]...[/THOUGHT], then output one integer line number in [ANSWER]...[/ANSWER].
+
+[C]
+{code}
+{invocation}
+[/C]
+[QUESTION]
+What is the next executed line after Line {line} ({codeline}) when the harness runs?
+If the queried line is not executed, answer -1.
+[/QUESTION]
+[THOUGHT]

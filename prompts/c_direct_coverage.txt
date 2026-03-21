@@ -1,0 +1,10 @@
+You are given C source code and a harness program that executes it. Answer only YES or NO. Do not add extra text. Return your final answer inside [ANSWER] and [/ANSWER].
+
+[C]
+{code}
+{invocation}
+[/C]
+[QUESTION]
+Is Line {line} ({codeline}) executed when the harness runs?
+[/QUESTION]
+[ANSWER]

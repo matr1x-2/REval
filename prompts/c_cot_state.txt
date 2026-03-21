@@ -1,0 +1,12 @@
+You are given C source code and a harness program.
+Reason in [THOUGHT]...[/THOUGHT], then provide only the value in [ANSWER]...[/ANSWER].
+
+[C]
+{code}
+{invocation}
+[/C]
+[QUESTION]
+What is the value of expression {var} at Line {line} ({codeline}) when the harness runs?
+If unavailable or not executed, answer Nil.
+[/QUESTION]
+[THOUGHT]

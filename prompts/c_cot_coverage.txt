@@ -1,0 +1,11 @@
+You are given C source code and a harness program that executes it.
+Think through control flow first in [THOUGHT]...[/THOUGHT], then answer YES or NO in [ANSWER]...[/ANSWER].
+
+[C]
+{code}
+{invocation}
+[/C]
+[QUESTION]
+Is Line {line} ({codeline}) executed when the harness runs?
+[/QUESTION]
+[THOUGHT]

@@ -1,0 +1,13 @@
+You are given C source code and a harness program that executes it. Output only one integer line number.
+- If the queried line is not executed, answer -1.
+- If control leaves the function/program after the queried line, answer -1.
+Return your answer inside [ANSWER] and [/ANSWER].
+
+[C]
+{code}
+{invocation}
+[/C]
+[QUESTION]
+What is the next executed line after Line {line} ({codeline}) when the harness runs?
+[/QUESTION]
+[ANSWER]
