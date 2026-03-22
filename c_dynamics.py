@@ -36,12 +36,14 @@ class CSandbox:
         self,
         code: str,
         harness: str,
+        stubs: str | None = None,
         compile_flags: list[str] | None = None,
         entry_file: str = "target.c",
         timeout_sec: int = 20,
     ):
         self.code = code
         self.harness = harness
+        self.stubs = stubs or ""
         self.compile_flags = compile_flags or ["-std=gnu11", "-O0", "-g"]
         self.entry_file = entry_file
         self.timeout_sec = timeout_sec
@@ -50,6 +52,11 @@ class CSandbox:
         src = workdir / self.entry_file
         exe = workdir / "a.out"
         with open(src, "w", encoding="utf-8") as f:
+            if self.stubs.strip() != "":
+                f.write(self.stubs)
+                if not self.stubs.endswith("\n"):
+                    f.write("\n")
+                f.write("\n")
             f.write(self.code)
             if not self.code.endswith("\n"):
                 f.write("\n")

@@ -11,7 +11,7 @@ from tqdm import tqdm
 
 from c_dataset import CReval, validate_record_shape
 from c_dynamics import CSandbox, normalize_scalar_text
-from c_inference import APIModel
+from c_inference import create_model
 from c_prompt import build_cot_prompt, build_direct_prompt
 
 
@@ -32,14 +32,7 @@ class CTaskBase:
         self.name = name
         self.cfg = cfg
         self.prompt_type = cfg.get("prompt_type", "direct")
-        self.model = APIModel(
-            model_id=cfg["model_id"],
-            api_key=cfg.get("api_key"),
-            api_base=cfg.get("api_base"),
-            temperature=float(cfg.get("temperature", 0.0)),
-            max_tokens=int(cfg.get("max_tokens", 768)),
-            system_prompt=cfg.get("system_prompt"),
-        )
+        self.model = create_model(cfg)
         self.data_path = cfg.get("data_path", "data/CREval_data.jsonl")
         self.task_path = cfg.get("task_path", "data/CREval_tasks.jsonl")
         self.save_dir = cfg.get("save_dir", "model_generations_c")
@@ -92,6 +85,7 @@ class CoverageTask(CTaskBase):
                 sandbox = CSandbox(
                     code=code,
                     harness=inp["harness"],
+                    stubs=inp.get("stubs", ""),
                     compile_flags=rec.get("compile_flags", ["-std=gnu11", "-O0", "-g"]),
                     timeout_sec=int(self.cfg.get("exec_timeout", 20)),
                 )
@@ -163,6 +157,7 @@ class PathTask(CTaskBase):
                 sandbox = CSandbox(
                     code=code,
                     harness=inp["harness"],
+                    stubs=inp.get("stubs", ""),
                     compile_flags=rec.get("compile_flags", ["-std=gnu11", "-O0", "-g"]),
                     timeout_sec=int(self.cfg.get("exec_timeout", 20)),
                 )
@@ -222,6 +217,7 @@ class StateTask(CTaskBase):
                 sandbox = CSandbox(
                     code=code,
                     harness=inp["harness"],
+                    stubs=inp.get("stubs", ""),
                     compile_flags=rec.get("compile_flags", ["-std=gnu11", "-O0", "-g"]),
                     timeout_sec=int(self.cfg.get("exec_timeout", 20)),
                 )
@@ -281,6 +277,7 @@ class OutputTask(CTaskBase):
                     sandbox = CSandbox(
                         code=code,
                         harness=inp["harness"],
+                        stubs=inp.get("stubs", ""),
                         compile_flags=rec.get("compile_flags", ["-std=gnu11", "-O0", "-g"]),
                         timeout_sec=int(self.cfg.get("exec_timeout", 20)),
                     )
@@ -329,14 +326,7 @@ class ConsistencyTask:
     def __init__(self, cfg: dict):
         self.cfg = cfg
         self.save_dir = cfg.get("save_dir", "model_generations_c")
-        self.model_info = APIModel(
-            model_id=cfg["model_id"],
-            api_key=cfg.get("api_key"),
-            api_base=cfg.get("api_base"),
-            temperature=float(cfg.get("temperature", 0.0)),
-            max_tokens=int(cfg.get("max_tokens", 768)),
-            system_prompt=cfg.get("system_prompt"),
-        ).info
+        self.model_info = create_model(cfg).info
 
     def _latest(self, task_name: str) -> str:
         import glob
@@ -406,6 +396,7 @@ def load_cfg(path: str) -> dict:
 def save_cfg_template(path: str):
     cfg = {
         "task": "coverage",
+        "provider": "openai_compat",
         "prompt_type": "direct",
         "model_id": "YOUR_MODEL_NAME",
         "api_key": "YOUR_API_KEY",

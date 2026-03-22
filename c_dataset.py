@@ -28,3 +28,5 @@ def validate_record_shape(record: dict[str, Any]) -> None:
             raise ValueError(f"inputs[{idx}] must be an object")
         if "harness" not in inp:
             raise ValueError(f"inputs[{idx}] missing required key: harness")
+        if "stubs" in inp and not isinstance(inp["stubs"], str):
+            raise ValueError(f"inputs[{idx}].stubs must be a string")

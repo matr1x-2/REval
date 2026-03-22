@@ -55,6 +55,7 @@ pip install -r requirements.txt
 
 - compile_flags: 例如 ["-std=gnu11", "-O0", "-g", "-pthread"]
 - inputs[i].output: 该输入对应的期望 stdout（output 任务可直接用）
+- inputs[i].stubs: 最小桩环境源码（会被拼接到 code 之前一起编译）
 - inputs[i].probe_exprs: 手工指定状态探针（强烈推荐，用于复杂系统代码）
 
 probe_exprs 示例：
@@ -70,6 +71,21 @@ probe_exprs 示例：
 参考示例见：
 
 - data/CREval_data.example.jsonl
+
+对于来自多仓库切片的样本（常见于 Linux/libuv 等），可以先批量生成草稿数据：
+
+```bash
+python data/collect_code/build_creval_scaffold.py \
+	--dataset-dir data/collect_code/C-REval_MultiRepo_v1 \
+	--output data/CREval_data.scaffold.jsonl
+```
+
+该脚本会为每个样本生成：
+
+- 草稿 harness
+- 通用最小 stubs
+
+注意：自动草稿仅用于起步。带参数函数、重依赖宏、内核专有类型样本通常仍需你手工修订 harness/stubs 后再跑正式评测。
 
 ## 3. 生成任务文件
 
@@ -98,9 +114,20 @@ python c_evaluation.py init-config -i .c_eval_config.json
 
 需要填写：
 
+- provider（openai_compat 或 gemini）
 - model_id
 - api_key
 - api_base（OpenAI 兼容接口地址）
+
+Gemini 原生 API 配置示例：
+
+```json
+{
+	"provider": "gemini",
+	"model_id": "gemini-2.5-pro",
+	"api_key": "YOUR_GEMINI_API_KEY"
+}
+```
 
 ## 5. 运行评测
 

@@ -1,0 +1,1 @@
+{"task_id":"CREval/0","idx":0,"tasks":[{"input_idx":0,"task":[{"lineno":14,"var":"z"},{"lineno":20,"var":"s"},{"lineno":21,"var":"i"},{"lineno":23,"var":"s"}],"output_pred":"/* Fill expected result */ sum_array(... ) == ??"}]}
