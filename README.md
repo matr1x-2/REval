@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # C-REval: 面向系统代码理解的评测框架
 
 本仓库在 REval 思路上新增了 C 语言评测管线，用于评估大模型对以下场景的执行语义理解能力：
@@ -154,3 +155,6 @@ python c_evaluation.py run -i .c_eval_config.json
 - gdb 状态比较默认是文本匹配，复杂对象可通过 probe_exprs 选择更稳定表达式。
 - path 依赖断点轨迹，建议探针覆盖关键控制流行。
 - 如需跨文件大型工程评测，建议先把被评函数及必要依赖裁剪到单任务源文件再评测。
+=======
+基于 REval 框架改编，用于评估大模型对系统底层代码的理解能力。
+>>>>>>> 7b3ca29 (init, fork the code, change readme)
