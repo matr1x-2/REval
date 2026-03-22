@@ -463,10 +463,18 @@ def write_manifest_and_metadata(output_dir, manifest_rows, stats, args, source_r
             }
             f.write(json.dumps(public_row, ensure_ascii=False) + "\n")
 
+    public_source_roots = [
+        {
+            "repo": root["repo"],
+            "path_hint": os.path.basename(root["path"].rstrip(os.sep)) or root["repo"],
+        }
+        for root in source_roots
+    ]
+
     metadata = {
         "script_version": SCRIPT_VERSION,
         "generated_at": dt.datetime.utcnow().isoformat() + "Z",
-        "source_roots": source_roots,
+        "source_roots": public_source_roots,
         "repo_commits": {root["repo"]: get_git_commit(root["path"]) for root in source_roots},
         "seed": args.seed,
         "targets": TARGETS,

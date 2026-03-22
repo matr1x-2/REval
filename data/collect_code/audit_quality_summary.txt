@@ -1,0 +1,12 @@
+total=200
+1_High_Complexity repo_mix={'libuv': 1, 'lwip': 2, 'libevent': 2, 'linux': 38, 'musl': 7}
+2_Goto_Paths repo_mix={'linux': 47, 'libuv': 2, 'libevent': 1}
+3_Kernel_Macros repo_mix={'linux': 29, 'libuv': 1}
+4_Multi_Pointers repo_mix={'jemalloc': 2, 'linux': 29, 'musl': 3, 'lwip': 2, 'libevent': 4}
+5_Concurrency_Locks repo_mix={'linux': 30}
+1_High_Complexity unique_subsystems=15
+2_Goto_Paths unique_subsystems=14
+3_Kernel_Macros unique_subsystems=10
+4_Multi_Pointers unique_subsystems=19
+5_Concurrency_Locks unique_subsystems=7
+rule_violations=0

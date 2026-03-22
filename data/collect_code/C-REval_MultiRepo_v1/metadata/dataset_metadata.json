@@ -4,27 +4,27 @@
   "source_roots": [
     {
       "repo": "linux",
-      "path": "/home/wuwanying/linux"
+      "path_hint": "linux"
     },
     {
       "repo": "musl",
-      "path": "/home/wuwanying/sys_bench_sources/musl"
+      "path_hint": "musl"
     },
     {
       "repo": "jemalloc",
-      "path": "/home/wuwanying/sys_bench_sources/jemalloc"
+      "path_hint": "jemalloc"
     },
     {
       "repo": "libevent",
-      "path": "/home/wuwanying/sys_bench_sources/libevent"
+      "path_hint": "libevent"
     },
     {
       "repo": "libuv",
-      "path": "/home/wuwanying/sys_bench_sources/libuv"
+      "path_hint": "libuv"
     },
     {
       "repo": "lwip",
-      "path": "/home/wuwanying/sys_bench_sources/lwip"
+      "path_hint": "lwip"
     }
   ],
   "repo_commits": {
